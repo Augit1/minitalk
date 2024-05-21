@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   serveur.c                                          :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 14:18:45 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/05/16 14:45:59 by aude-la-         ###   ########.fr       */
+/*   Created: 2024/05/18 13:32:10 by aude-la-          #+#    #+#             */
+/*   Updated: 2024/05/21 20:31:11 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "ft_printf/ft_printf.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-int	main(void)
-{
-	pid_t	pid;
+# include <unistd.h>
+# include <signal.h>
+# include <stdlib.h>
+# include "ft_printf.h"
 
-	pid = getpid();
-	ft_printf("%d\n", pid);
+int		ft_atoi(const char *str);
+char	*ft_itoa(int n);
+void	secure_kill(pid_t pid, int sig);
+int		ft_strlen(char *s);
+int		is_all_zeroes(const char *str);
 
-	return (0);
-}
+#endif
