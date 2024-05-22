@@ -6,14 +6,16 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:42:34 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/05/22 19:05:16 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/05/22 21:19:13 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_UTILS_H
 # define MINITALK_UTILS_H
 
-# define WAITING_TIME 30
+# ifndef WAITING_TIME
+#  define WAITING_TIME 30
+# endif
 
 # include "utils.h"
 

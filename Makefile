@@ -8,7 +8,7 @@ NAME1		=	server
 NAME2		=	client
 
 CC			=	gcc
-CFLAGS		=	-g #-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 
 PRINTF_DIR	=	./ft_printf
 PRINTF		=	$(PRINTF_DIR)/libftprintf.a

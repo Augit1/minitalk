@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:11:44 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/05/22 18:46:48 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/05/22 20:43:30 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,6 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	return (result * sign);
-}
-
-static int	ft_sizenum(int n)
-{
-	int	len_num;
-
-	len_num = 1;
-	while (n > 9)
-	{
-		n /= 10;
-		len_num++;
-	}
-	return (len_num);
 }
 
 static char	*ft_allocstr(int len)

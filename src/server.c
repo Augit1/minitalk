@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:18:45 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/05/22 19:06:07 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/05/22 20:59:10 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,13 @@ char	*len_receipt(int sig)
 	return (NULL);
 }
 
-void	receipt_c(int sig, siginfo_t *info, void *context)
+void	receipt_c(int sig)
 {
 	static char		*txt = NULL;
 	static char		octet[8] = {0};
 	static int		i = 0;
 	static int		l = 0;
 
-	(void)context;
 	if (!txt)
 	{
 		txt = len_receipt(sig);
@@ -71,7 +70,7 @@ int	main(void)
 
 	pid = getpid();
 	ft_printf("%d\n", pid);
-	sa.sa_sigaction = receipt_c;
+	sa.sa_handler = receipt_c;
 	sa.sa_flags = 0;
 	sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, NULL);
