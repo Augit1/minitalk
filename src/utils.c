@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:11:44 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/05/21 20:35:15 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:46:48 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_atoi(const char *str)
 	return (result * sign);
 }
 
-int	ft_sizenum(int n)
+static int	ft_sizenum(int n)
 {
 	int	len_num;
 
@@ -47,7 +47,8 @@ int	ft_sizenum(int n)
 	}
 	return (len_num);
 }
-char	*ft_allocstr(int len)
+
+static char	*ft_allocstr(int len)
 {
 	char	*num_str;
 
@@ -84,18 +85,6 @@ char	*ft_itoa(int n)
 	return (number);
 }
 
-
-void	secure_kill(pid_t pid, int sig)
-{
-	if (kill(pid, sig) != 0)
-	{
-		ft_printf("Error check if: ");
-		ft_printf("\n\t- The pid: %d is OK", pid);
-		ft_printf("\n\t- seveur is UP\n");
-		exit(1);
-	}
-}
-
 int	ft_strlen(char *s)
 {
 	int	i;
@@ -104,17 +93,4 @@ int	ft_strlen(char *s)
 	while (s[i])
 		i++;
 	return (i);
-}
-
-int	is_all_zeroes(const char *str)
-{
-	int	i;
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] != '0')
-			return (0);
-		i++;
-	}
-	return (1);
 }

@@ -19,18 +19,21 @@ OBJ_DIR		=	./obj
 
 
 SRC_SERVEUR	=	$(SRC_DIR)/server.c \
+				$(SRC_DIR)/minitalk_utils.c \
 				$(OBJ_DIR)/utils.c
 
 SRC_CLIENT	=	$(SRC_DIR)/client.c \
+				$(SRC_DIR)/minitalk_utils.c \
 				$(SRC_DIR)/utils.c
 
-#OBJ_SERVEUR	=	$(SRC_SERVEUR:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-#OBJ_CLIENT	=	$(SRC_CLIENT:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
 
 OBJ_SERVEUR = $(OBJ_DIR)/server.o \
-			 $(OBJ_DIR)/utils.o
+			  $(OBJ_DIR)/minitalk_utils.o \
+			  $(OBJ_DIR)/utils.o
 
 OBJ_CLIENT = $(OBJ_DIR)/client.o \
+			 $(OBJ_DIR)/minitalk_utils.o \
 			 $(OBJ_DIR)/utils.o
 
 

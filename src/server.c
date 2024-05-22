@@ -6,96 +6,61 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:18:45 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/05/22 15:09:20 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:06:07 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "minitalk_utils.h"
 
-char	*g_txt = NULL;
-
-char	bit_to_c(char *octet, int i, int sig)
-{
-	char	c;
-	int		j;
-
-	c = 0;
-	j = -1;
-	while (++j < 8)
-		c |= (octet[j] << (7 - j));
-	i = 0;
-	return (c);
-}
-
-void	len_receipt(int	sig, siginfo_t *info, void *context)
+char	*len_receipt(int sig)
 {
 	static int	len = 0;
 	static char	octet[8];
 	static int	i = 0;
+	char		*str;
 
-	(void)context;
-	if (sig == SIGUSR1)
-	{
-		octet[i] = 1;
-//		secure_kill(info->si_pid, SIGUSR2);
-	}
-	else if (sig == SIGUSR2)
-	{
-		octet[i] = 0;
-//		secure_kill(info->si_pid, SIGUSR2);
-	}
-	else
-		exit(1);
+	octet[i] = manage_sig(sig);
 	i++;
 	if (i == 8)
 	{
+		i = 0;
 		if (is_all_zeroes(octet))
 		{
-			g_txt = malloc((len + 1) * sizeof(char));
-			write(1, "w", 1);
+			str = malloc((len + 1) * sizeof(char));
+			if (!str)
+				exit(1);
+			str[len] = '\0';
+			len = 0;
+			return (str);
 		}
-		else	
-		{
-			len *= 10;
-			len += (bit_to_c(octet, i, sig) - '0');
-			ft_printf("%d", &len);
-		}
+		else
+			len = len * 10 + (bit_to_c(octet) - '0');
 	}
+	return (NULL);
 }
 
 void	receipt_c(int sig, siginfo_t *info, void *context)
 {
-	static char		octet[8];
+	static char		*txt = NULL;
+	static char		octet[8] = {0};
 	static int		i = 0;
 	static int		l = 0;
 
 	(void)context;
-	if (sig == SIGUSR1)
+	if (!txt)
 	{
-		octet[i] = 1;
-//		secure_kill(info->si_pid, SIGUSR2);
+		txt = len_receipt(sig);
+		return ;
 	}
-	else if (sig == SIGUSR2)
-	{
-		octet[i] = 0;
-//		secure_kill(info->si_pid, SIGUSR2);
-	}
-	else
-		exit(1);
+	octet[i] = manage_sig(sig);
 	i++;
 	if (i == 8)
 	{
+		i = 0;
 		if (is_all_zeroes(octet))
-		{
-			ft_printf("%s\n", g_txt);
-			
-			write(1, "e", 1);
-
-			free(g_txt);
-			g_txt = NULL;
-		}
-		else	
-			g_txt[l++] = bit_to_c(octet, i, sig);
+			print_init(&txt, &l);
+		else if (txt)
+			txt[l++] = bit_to_c(octet);
 	}
 }
 
@@ -106,11 +71,8 @@ int	main(void)
 
 	pid = getpid();
 	ft_printf("%d\n", pid);
-	if (!g_txt)
-		sa.sa_sigaction = len_receipt;
-	else
-		sa.sa_sigaction = receipt_c;
-	sa.sa_flags = SA_SIGINFO;
+	sa.sa_sigaction = receipt_c;
+	sa.sa_flags = 0;
 	sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
