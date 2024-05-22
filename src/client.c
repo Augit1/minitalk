@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:04:31 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/05/21 20:47:49 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:57:21 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,28 @@ int	main(int argc, char **argv)
 	len = ft_itoa(ft_strlen(argv[2]));
 	i = 0;
 	while (len[i])
+	{
 		send_c(len[i++], pid);
+		write(1, "c", 1);
+	}
 	free(len);
 	i = 8;
-	while (i-- > 0)
+	while (--i >= 0)
+	{
 		secure_kill(pid, SIGUSR2);
-	while (argv[2][i])
-		send_c(argv[2][i++], pid);
+		write(1, "a", 1);
+	}
+
+	while (argv[2][++i])
+	{
+		send_c(argv[2][i], pid);
+		write(1, &argv[2][i], 1);
+	}
 	i = 8;
-	while (i-- > 0)
+	while (--i >= 0)
+	{
 		secure_kill(pid, SIGUSR2);
+		write(1, "d", 1);
+	}
 	return (0);
 }

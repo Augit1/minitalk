@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:18:45 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/05/21 20:44:39 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:09:20 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,15 @@ void	len_receipt(int	sig, siginfo_t *info, void *context)
 	if (i == 8)
 	{
 		if (is_all_zeroes(octet))
+		{
 			g_txt = malloc((len + 1) * sizeof(char));
+			write(1, "w", 1);
+		}
 		else	
 		{
 			len *= 10;
 			len += (bit_to_c(octet, i, sig) - '0');
+			ft_printf("%d", &len);
 		}
 	}
 }
@@ -84,6 +88,9 @@ void	receipt_c(int sig, siginfo_t *info, void *context)
 		if (is_all_zeroes(octet))
 		{
 			ft_printf("%s\n", g_txt);
+			
+			write(1, "e", 1);
+
 			free(g_txt);
 			g_txt = NULL;
 		}
