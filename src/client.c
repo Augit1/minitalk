@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:04:31 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/05/23 13:23:14 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:56:00 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,10 @@ void	send_c(char c, pid_t pid)
 	while (--i >= 0)
 	{
 		if (c & (1 << i))
-		{
 			secure_kill(pid, SIGUSR1);
-			write(1, "1", 1);
-		}
 		else
-		{
 			secure_kill(pid, SIGUSR2);
-			write(1, "0", 1);
-		}
 	}
-	write(1, " ", 1);
 }
 
 int	main(int argc, char **argv)
@@ -52,18 +45,11 @@ int	main(int argc, char **argv)
 	free(len);
 	i = 8;
 	while (--i >= 0)
-	{
 		secure_kill(pid, SIGUSR2);
-		write(1, "0", 1);
-	}
-	write(1, " ", 1);
 	while (argv[2][++i])
 		send_c(argv[2][i], pid);
 	i = 8;
 	while (--i >= 0)
-	{
 		secure_kill(pid, SIGUSR2);
-		write(1, "0", 1);
-	}
 	return (0);
 }
