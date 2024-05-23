@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:11:44 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/05/22 20:43:30 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/05/23 11:12:16 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,20 @@ char	*ft_itoa(int n)
 		value /= 10;
 	}
 	return (number);
+}
+
+int	is_all_zeroes(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (i < 8)
+	{
+		if (str[i] != 0)
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 int	ft_strlen(char *s)

@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:32:10 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/05/22 18:44:56 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/05/23 11:12:35 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
+int		is_all_zeroes(const char *str);
 int		ft_strlen(char *s);
 
 #endif
