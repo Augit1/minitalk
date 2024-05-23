@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:18:45 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/05/23 13:23:57 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:48:51 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*len_receipt(int sig, pid_t sender_pid)
 {
 	static int	len = 0;
-	static char	octet[8];
+	static char	octet[8] = {0};
 	static int	i = 0;
 	char		*str;
 
