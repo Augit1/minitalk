@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:04:31 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/06/03 12:43:48 by aude-la-         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:01:25 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	send_c(char c, pid_t pid)
 		if (c & (1 << i))
 		{
 			secure_kill(pid, SIGUSR1);
-			write(1, "1", 1);
+//			write(1, "1", 1);
 		}
 		else
 		{
 			secure_kill(pid, SIGUSR2);
-			write(1, "0", 1);
+//			write(1, "0", 1);
 		}
 	}
 }
