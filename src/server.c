@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:18:45 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/05/23 16:48:51 by aude-la-         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:33:08 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	receipt_c(int sig, siginfo_t *info, void *context)
 	{
 		i = 0;
 		if (is_all_zeroes(octet))
-			print_init(&txt, &l);
+			print_message(&txt, &l);
 		else if (txt)
 			txt[l++] = bit_to_c(octet);
 	}

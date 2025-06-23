@@ -6,7 +6,7 @@
 /*   By: aude-la- <aude-la-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:39:28 by aude-la-          #+#    #+#             */
-/*   Updated: 2024/05/23 13:38:04 by aude-la-         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:33:25 by aude-la-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	secure_kill(pid_t pid, int sig)
 	g_ack_received = 0;
 }
 
-void	print_init(char **txt, int *l)
+void	print_message(char **txt, int *l)
 {
 	ft_printf("%s\n", *txt);
 	free(*txt);
